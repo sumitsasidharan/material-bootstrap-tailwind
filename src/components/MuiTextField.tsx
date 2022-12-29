@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Stack, TextField, InputAdornment } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const MuiTextField = () => {
+   const [firstName, setFirstName] = useState('');
+
    return (
       <Stack spacing={4}>
          <Stack direction="row" spacing={2}>
@@ -20,8 +22,16 @@ const MuiTextField = () => {
             />
          </Stack>
 
+         {/* ERROR  RED BORDER, ONCHANGE */}
          <Stack direction="row" spacing={2}>
-            <TextField label="Required" required />
+            <TextField
+               label="Form Input"
+               value={firstName}
+               onChange={(e) => setFirstName(e.target.value)}
+               required
+               error={!firstName}
+               helperText={!firstName ? 'Required' : 'Do not share your password with anyone.'}
+            />
             <TextField
                label="Password"
                type="password"
@@ -51,10 +61,12 @@ const MuiTextField = () => {
             />
             <TextField
                label="Password"
-               type='password'
+               type="password"
                InputProps={{
                   endAdornment: (
-                     <InputAdornment position="end"><VisibilityIcon /></InputAdornment>
+                     <InputAdornment position="end">
+                        <VisibilityIcon />
+                     </InputAdornment>
                   ),
                }}
             />
