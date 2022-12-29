@@ -1,8 +1,28 @@
-import { Button, Stack, IconButton, ButtonGroup } from '@mui/material';
+import { useState } from 'react';
+import {
+   Button,
+   Stack,
+   IconButton,
+   ButtonGroup,
+   ToggleButton,
+   ToggleButtonGroup,
+} from '@mui/material';
 import AdbRoundedIcon from '@mui/icons-material/AdbRounded';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import FormatBoldIcon from '@mui/icons-material/FormatBold';
+import FormatItalicIcon from '@mui/icons-material/FormatItalic';
+import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 
 export const MuiButton = () => {
+   const [formats, setFormats] = useState<string[] | null>([]);
+   console.log({ formats });
+   const handleFormatChange = (
+      _event: React.MouseEvent<HTMLElement>,
+      updatedFormats: string[] | null
+   ) => {
+      setFormats(updatedFormats);
+   };
+
    return (
       <Stack spacing={4}>
          <Stack spacing={2} direction="row">
@@ -74,11 +94,38 @@ export const MuiButton = () => {
          {/* Button Group */}
          <h2>Button Group</h2>
          <Stack direction="row">
-            <ButtonGroup variant="contained" size="small" orientation='vertical' color="secondary" >
-               <Button onClick={() => alert("Left clicked")} >Left</Button>
+            <ButtonGroup
+               variant="contained"
+               size="small"
+               orientation="vertical"
+               color="secondary">
+               <Button onClick={() => alert('Left clicked')}>Left</Button>
                <Button>Center</Button>
                <Button>Right</Button>
             </ButtonGroup>
+         </Stack>
+
+         {/* TOGGLE BUTTON GROUP */}
+         {/* can be used for formatting bold, italic, underline in Text Editors. */}
+         <Stack direction="row">
+            <ToggleButtonGroup
+               aria-label="text formatting"
+               value={formats}
+               onChange={handleFormatChange}
+               size="small"
+               color="info"
+               orientation="vertical" exclusive >
+               <ToggleButton value="bold" aria-label="bold">
+                  <FormatBoldIcon />
+               </ToggleButton>
+               <ToggleButton value="italic" aria-label="italic">
+                  <FormatItalicIcon />
+               </ToggleButton>
+               <ToggleButton value="underline" aria-label="underline">
+                  <FormatUnderlinedIcon />
+               </ToggleButton>
+            </ToggleButtonGroup>
+            {/* FormatBoldIcon FormatItalicIcon FormatUnderlinedIcon */}
          </Stack>
       </Stack>
    );
