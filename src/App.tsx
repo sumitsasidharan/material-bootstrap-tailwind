@@ -32,6 +32,7 @@ import { MuiTable } from './components/MuiTable'
 import MuiTextField from './components/MuiTextField'
 import { MuiTooltip } from './components/MuiTooltip'
 import { MuiTypography } from './components/Typography'
+import MuiPagination from './components/MuiPagination';
 
 
 
@@ -89,7 +90,8 @@ function App() {
            <MuiDialog />
            {/* <MuiProgress /> */}
            {/* <MuiSkeleton /> */}
-           <MuiLoadingButton />
+           {/* <MuiLoadingButton /> */}
+           <MuiPagination />
         </div>
      </ThemeProvider>
   );
